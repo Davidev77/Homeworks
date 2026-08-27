@@ -1,11 +1,16 @@
 .container {
   max-width: 600px;
-  margin: 40px auto;
-  padding: 0 20px;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 48px 20px;
+  background: #F4F4F4;
 }
 
 h1 {
+  margin: 0 0 32px;
   text-align: center;
-  color: #3f51b5;
+  color: #111111;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }

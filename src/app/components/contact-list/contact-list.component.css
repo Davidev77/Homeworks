@@ -2,7 +2,13 @@
   margin-top: 20px;
 }
 
+.contact-list h2 {
+  margin: 0 0 14px;
+  color: #111111;
+  font-size: 1.2rem;
+}
+
 .empty {
-  color: #757575;
+  color: #5A6577;
   font-style: italic;
 }

@@ -3,19 +3,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 14px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #D6D9DE;
   border-radius: 8px;
   margin-bottom: 8px;
+  background: #FFFFFF;
 }
 
 .contact-info {
   display: flex;
   flex-direction: column;
+  gap: 3px;
+}
+
+.contact-info strong {
+  color: #111111;
+}
+
+.contact-info span {
+  color: #5A6577;
 }
 
 .btn-delete {
-  background-color: #e53935;
-  color: white;
+  background-color: #111111;
+  color: #F4F4F4;
   border: none;
   padding: 6px 12px;
   border-radius: 6px;
@@ -23,5 +33,5 @@
 }
 
 .btn-delete:hover {
-  background-color: #c62828;
+  background-color: #FF0000;
 }
