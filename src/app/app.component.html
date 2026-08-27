@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+
+  <app-loader *ngIf="loading()"></app-loader>
+
+  <div *ngIf="!loading()">
+    <app-contact-form
+      (addContact)="onAddContact($event)">
+    </app-contact-form>
+
+    <app-contact-list
+      [contacts]="contacts()"
+      (deleteContact)="onDeleteContact($event)">
+    </app-contact-list>
+  </div>
+</div>

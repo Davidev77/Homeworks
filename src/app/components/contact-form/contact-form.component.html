@@ -1,0 +1,16 @@
+<form class="contact-form" (ngSubmit)="onSubmit()">
+  <h2>Agregar contacto</h2>
+  <input
+    type="text"
+    [(ngModel)]="name"
+    name="name"
+    placeholder="Nombre"
+    required>
+  <input
+    type="text"
+    [(ngModel)]="phone"
+    name="phone"
+    placeholder="Teléfono"
+    required>
+  <button type="submit">Agregar</button>
+</form>

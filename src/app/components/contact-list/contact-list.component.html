@@ -1,0 +1,13 @@
+<div class="contact-list">
+  <h2>Lista de contactos ({{ contacts.length }})</h2>
+
+  <p *ngIf="contacts.length === 0" class="empty">
+    No hay contactos registrados.
+  </p>
+
+  <app-contact-item
+    *ngFor="let contact of contacts"
+    [contact]="contact"
+    (delete)="onDelete($event)">
+  </app-contact-item>
+</div>
