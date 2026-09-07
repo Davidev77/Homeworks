@@ -1,0 +1,47 @@
+<div class="page">
+  <h1>Historial del Navegador</h1>
+  <p class="subtitle">
+    Basado en una double linked list. Cada nodo apunta tanto al
+    nodo anterior como al siguiente, esta parte simula ser un navegador web.
+  </p>
+
+  <div class="card browser" *ngIf="currentPage">
+    <div class="address-bar">
+      <button class="nav-btn" (click)="goBack()" [disabled]="!canGoBack" title="Atrás">←</button>
+      <button class="nav-btn" (click)="goForward()" [disabled]="!canGoForward" title="Adelante">→</button>
+      <div class="url">{{ currentPage.url }}</div>
+    </div>
+
+    <div class="page-preview">
+      <div class="page-title">{{ currentPage.title }}</div>
+      <div class="page-desc">Estás viendo esta página actualmente.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="list-title">Visitar una nueva página</div>
+    <div class="chip-row">
+      <button
+        class="chip"
+        *ngFor="let page of availablePages"
+        (click)="visit(page)"
+      >
+        {{ page.title }}
+      </button>
+    </div>
+  </div>
+
+  <div class="card list">
+    <div class="list-title">Línea de tiempo del historial ({{ historyList.length }} páginas)</div>
+    <ol>
+      <li *ngFor="let page of historyList; let i = index" [class.current]="i === currentIndex">
+        <span class="index">{{ i + 1 }}</span>
+        <span class="details">
+          <span class="title">{{ page.title }}</span>
+          <span class="url-small">{{ page.url }}</span>
+        </span>
+        <span class="badge" *ngIf="i === currentIndex">estás aquí</span>
+      </li>
+    </ol>
+  </div>
+</div>

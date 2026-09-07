@@ -1,0 +1,141 @@
+.page h1 {
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: #9aa0d4;
+  margin-top: 0;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.browser {
+  margin-bottom: 20px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.address-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #14172b;
+  border-bottom: 1px solid #2c3157;
+}
+
+.nav-btn {
+  background: #2c3157;
+  color: #eef0fb;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.url {
+  flex: 1;
+  background: #0f1220;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: #b7bcf0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-preview {
+  padding: 24px 20px;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.page-desc {
+  color: #9aa0d4;
+  margin-top: 6px;
+}
+
+.list-title {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  background: #2c3157;
+  color: #eef0fb;
+}
+
+.chip:hover {
+  background: #3a406f;
+}
+
+.list {
+  margin-top: 20px;
+}
+
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #14172b;
+}
+
+li.current {
+  background: #262c58;
+  outline: 1px solid #6a5cff;
+}
+
+.index {
+  color: #656ba8;
+  width: 20px;
+  text-align: right;
+}
+
+.details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.details .title {
+  font-weight: 600;
+}
+
+.details .url-small {
+  font-size: 12px;
+  color: #9aa0d4;
+}
+
+.badge {
+  font-size: 11px;
+  background: #6a5cff;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}

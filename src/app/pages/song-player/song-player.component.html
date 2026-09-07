@@ -1,0 +1,40 @@
+<div class="page">
+  <h1>Reproductor de Música</h1>
+  <p class="subtitle">
+    Basado en una linked list. Cada nodo apunta solamente al
+    siguiente nodo, por lo que solo puedes avanzar pero no retroceder al menos que sea para volver 
+    al inicio (head) de la lista.
+  </p>
+
+  <div class="card player" *ngIf="currentSong">
+    <div class="now-playing-label">Reproduciendo ahora</div>
+    <div class="song-title">{{ currentSong.title }}</div>
+    <div class="song-artist">{{ currentSong.artist }} • {{ currentSong.duration }}</div>
+
+    <div class="controls">
+      <button class="btn-secondary" (click)="restart()" [disabled]="isAtStart">
+        ⏮ Reiniciar
+      </button>
+      <button class="btn-primary" (click)="playNext()" [disabled]="!hasNext">
+        Siguiente ⏭
+      </button>
+    </div>
+
+    <div class="hint" *ngIf="!hasNext">Has llegado al final de la lista de reproducción.</div>
+  </div>
+
+  <div class="card list">
+    <div class="list-title">Lista de reproducción ({{ songs.length }} canciones)</div>
+    <ol>
+      <li *ngFor="let song of songs; let i = index" [class.current]="i === currentIndex">
+        <span class="index">{{ i + 1 }}</span>
+        <span class="details">
+          <span class="title">{{ song.title }}</span>
+          <span class="artist">{{ song.artist }}</span>
+        </span>
+        <span class="duration">{{ song.duration }}</span>
+        <span class="badge" *ngIf="i === currentIndex">▶ sonando</span>
+      </li>
+    </ol>
+  </div>
+</div>
