@@ -1,0 +1,53 @@
+# Dependencias
+/node_modules
+/.pnp
+.pnp.js
+
+# Angular / build
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Cache y compilados
+.angular/
+.angular/cache
+*.tsbuildinfo
+
+# IDEs y editores
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Sistema (Windows / macOS)
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs
+npm-debug.log
+yarn-error.log
+*.log
+
+# Variables de entorno / secretos
+.env
+.env.local
+
+# Testing
+/coverage
+/.nyc_output
+
+# Misceláneos
+*.pid
+*.seed
+*.pid.lock

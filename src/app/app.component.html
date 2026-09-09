@@ -1,0 +1,76 @@
+<h1>Sistema de Turnos de la Clinica</h1>
+
+<h2>1. Pacientes en espera (lista enlazada simple)</h2>
+
+<div>
+  <input type="text" [(ngModel)]="nombrePaciente" placeholder="Nombre">
+  <input type="number" [(ngModel)]="edadPaciente" placeholder="Edad">
+  <input type="text" [(ngModel)]="motivoPaciente" placeholder="Motivo">
+  <button (click)="agregarPacienteDesdeForm()">Agregar paciente</button>
+</div>
+
+<ul>
+  <li *ngFor="let p of pacientes">
+    {{ p.nombre }} - {{ p.edad }} años - {{ p.motivo }}
+    <button (click)="atenderPaciente(p.id)">Atender</button>
+  </li>
+</ul>
+<p *ngIf="pacientes.length === 0"><i>No hay pacientes esperando</i></p>
+
+<hr>
+
+<h2>2. Historial de atencion (lista doblemente enlazada)</h2>
+
+<ul>
+  <li *ngFor="let r of registros">
+    {{ r.paciente }} - atendido por {{ r.medico }} - {{ r.hora }}
+  </li>
+</ul>
+<p *ngIf="registros.length === 0"><i>Todavia no se atendio a nadie</i></p>
+
+<hr>
+
+<h2>3. Rotacion de medicos de guardia (lista circular)</h2>
+
+<p *ngIf="medicoDeGuardia">
+  Medico de guardia ahora: <b>{{ medicoDeGuardia.nombre }}</b>
+  (rota automatico en {{ segundosParaRotar }} segundos)
+</p>
+
+<button (click)="rotarMedico()">Rotar ahora</button>
+
+<ul>
+  <li *ngFor="let m of medicos">
+    {{ m.nombre }}
+  </li>
+</ul>
+
+<div>
+  <input type="text" [(ngModel)]="nombreMedico" placeholder="Nombre del medico">
+  <button (click)="agregarMedicoDesdeForm()">Agregar medico</button>
+</div>
+
+
+<hr>
+
+
+
+<h2>4. Comite administrativo (lista circular doblemente enlazada)</h2>
+
+<ul>
+  <li *ngFor="let m of miembros">
+    {{ m.nombre }} ({{ m.rol }})
+    <button (click)="quitarMiembro(m.id)">Quitar</button>
+  </li>
+</ul>
+<p *ngIf="miembros.length === 0"><i>No hay miembros</i></p>
+
+<p *ngIf="miembroActivo">Miembro activo: <b>{{ miembroActivo.nombre }}</b></p>
+<button (click)="anteriorMiembro()">Anterior</button>
+<button (click)="siguienteMiembro()">Siguiente</button>
+
+<div>
+  <input type="text" [(ngModel)]="nombreMiembro" placeholder="Nombre">
+  <input type="text" [(ngModel)]="rolMiembro" placeholder="Rol">
+  <button (click)="agregarMiembroDesdeForm()">Agregar miembro</button>
+</div>

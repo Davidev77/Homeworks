@@ -1,0 +1,29 @@
+:host {
+  font-family: Arial, sans-serif;
+  display: block;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-top: 25px;
+}
+
+input {
+  margin-right: 5px;
+  padding: 4px;
+}
+
+button {
+  margin-left: 5px;
+  padding: 4px 8px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
