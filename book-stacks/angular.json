@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "book-stack-app": {
+    "book-stacks": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/book-stack-app",
+            "outputPath": "dist/book-stacks",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -45,10 +45,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "book-stack-app:build:production"
+              "buildTarget": "book-stacks:build:production"
             },
             "development": {
-              "buildTarget": "book-stack-app:build:development"
+              "buildTarget": "book-stacks:build:development"
             }
           },
           "defaultConfiguration": "development"
