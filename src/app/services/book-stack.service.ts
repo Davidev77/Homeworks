@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { Book } from '../models/book.model';
 import { Stack } from '../models/stack';
 
-const MOCK_BOOKS: Book[] = [
+const LIBROS_DE_EJEMPLO: Book[] = [
   {
     name: 'Cien años de soledad',
     isbn: '978-0-06-088328-7',
@@ -33,21 +33,20 @@ const MOCK_BOOKS: Book[] = [
 export class BookStackService {
   private stack = new Stack<Book>();
 
-  /** Instantánea reactiva y de solo lectura de la pila (el top primero) */
   readonly books = signal<Book[]>([]);
 
   constructor() {
-    MOCK_BOOKS.forEach((book) => this.stack.push(book));
+    LIBROS_DE_EJEMPLO.forEach((book) => this.stack.push(book));
     this.refresh();
   }
 
-  /** Agrega un libro al top de la pila. */
+  /** Agrega un nuevo libro al top de la pila */
   addBook(book: Book): void {
     this.stack.push(book);
     this.refresh();
   }
 
-  /** Quita el libro del top de la pila, si existe. */
+  /** Desapila (pop) el libro del top, si existe */
   removeTop(): Book | undefined {
     const removed = this.stack.pop();
     this.refresh();

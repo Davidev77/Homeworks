@@ -1,9 +1,9 @@
 <header class="hero">
-  <h1 class="hero__title">Pila de libros - Stack of Books</h1>
+  <h1 class="hero__title">Pila de libros <span class="hero__title-sub">— Stack of Books</span></h1>
   <p class="hero__subtitle">
     Una pequeña biblioteca representada como una estructura de datos de
-    pila (LIFO), cada libro que agregues va arriba y el top de la
-    pila es lo que se extraería primero.
+    pila (LIFO), cada libro que agregues va arriba y el top de la pila es
+    lo que se extraería primero.
   </p>
 </header>
 
@@ -13,6 +13,6 @@
   </section>
 
   <section class="layout__list">
-    <app-book-list [books]="books" (removeTopRequested)="onRemoveTop()"></app-book-list>
+    <app-book-list [books]="books" (popBook)="onPopBook()"></app-book-list>
   </section>
 </main>

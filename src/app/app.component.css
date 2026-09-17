@@ -25,6 +25,12 @@
   margin-bottom: 0.75rem;
 }
 
+.hero__title-sub {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
 .hero__subtitle {
   max-width: 46ch;
   color: var(--ink-soft);

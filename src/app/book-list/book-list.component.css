@@ -9,31 +9,35 @@
   font-size: 1.3rem;
 }
 
-.drawer__actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-}
-
-.drawer__remove {
-  border: 1px solid var(--rule);
-  background: var(--cover-green);
-  color: white;
-  padding: 0.55rem 0.9rem;
-  cursor: pointer;
-  font-weight: 600;
-  border-radius: 4px;
-}
-
-.drawer__remove:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .drawer__hint {
   font-size: 0.75rem;
   color: var(--ink-soft);
   letter-spacing: 0.02em;
+}
+
+.drawer__pop {
+  width: 100%;
+  margin-bottom: 1.15rem;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  color: var(--wine);
+  border: 1px solid var(--wine);
+  border-radius: 2px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.drawer__pop:hover:not(:disabled) {
+  background: var(--wine);
+  color: #fffdf7;
+}
+
+.drawer__pop:disabled {
+  color: var(--rule);
+  border-color: var(--rule);
+  cursor: not-allowed;
 }
 
 .drawer__empty {
@@ -67,18 +71,22 @@
   box-shadow: 0 6px 16px -10px rgba(47, 75, 60, 0.55);
 }
 
-.card__index--top {
+.card__position {
   position: absolute;
   top: 0.7rem;
   right: 0.9rem;
   font-family: var(--font-body);
   font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--cover-green-dark);
-  background: rgba(47, 75, 60, 0.1);
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
   padding: 0.15rem 0.4rem;
   border-radius: 2px;
+}
+
+.card--top .card__position {
+  color: var(--cover-green-dark);
+  background: rgba(47, 75, 60, 0.1);
 }
 
 .card__title {

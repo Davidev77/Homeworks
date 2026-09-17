@@ -1,4 +1,4 @@
-# Book-Stacks
+# Book Stack App
 
 A small Angular app that stores books in a real **Stack (LIFO)** data
 structure. Each book has a **Name**, **ISBN**, **Author** and **Editorial**.

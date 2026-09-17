@@ -1,4 +1,7 @@
-
+/* ---------------------------------------------------------
+   Design tokens — "Card Catalog" theme
+   A stack of books rendered like a library index-card drawer.
+--------------------------------------------------------- */
 :root {
   --paper: #f5f1e6;
   --paper-dim: #ece5d3;

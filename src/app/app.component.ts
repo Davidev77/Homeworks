@@ -22,7 +22,7 @@ export class AppComponent {
     this.bookStack.addBook(book);
   }
 
-  onRemoveTop(): void {
+  onPopBook(): void {
     this.bookStack.removeTop();
   }
 }

@@ -10,12 +10,9 @@ import { Book } from '../models/book.model';
   styleUrl: './book-list.component.css',
 })
 export class BookListComponent {
-  /** Libros ordenados con el top de la pila primero. */
+  /** Libros ordenados desde el top de la pila */
   @Input({ required: true }) books: Book[] = [];
 
-  @Output() removeTopRequested = new EventEmitter<void>();
-
-  onRemoveTop(): void {
-    this.removeTopRequested.emit();
-  }
+  /** Se emite cuando el usuario pide sacar (pop) el libro del top de la pila */
+  @Output() popBook = new EventEmitter<void>();
 }

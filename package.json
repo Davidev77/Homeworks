@@ -1,5 +1,5 @@
 {
-  "name": "book-stacks",
+  "name": "book-stack-app",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
