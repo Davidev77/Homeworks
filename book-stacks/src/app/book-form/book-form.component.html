@@ -1,0 +1,38 @@
+<form class="slip" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+  <h2 class="slip__title">Agregar un libro a la pila</h2>
+
+  <div class="field">
+    <label for="name">Título</label>
+    <input id="name" type="text" formControlName="name" placeholder="ej. Cien años de soledad" />
+    @if (f.name.invalid && f.name.touched) {
+      <span class="error">El título es obligatorio</span>
+    }
+  </div>
+
+  <div class="field">
+    <label for="isbn">ISBN</label>
+    <input id="isbn" type="text" formControlName="isbn" placeholder="978-0-441-01359-3" />
+    @if (f.isbn.invalid && f.isbn.touched) {
+      <span class="error">Ingresa un ISBN válido: mínimo 10 caracteres, solo dígitos, X y guiones.</span>
+    }
+  </div>
+
+  <div class="field">
+    <label for="author">Autor</label>
+    <input id="author" type="text" formControlName="author" placeholder="ej. Gabriel García Márquez" />
+    @if (f.author.invalid && f.author.touched) {
+      <span class="error">El autor es obligatorio</span>
+    }
+  </div>
+
+  <div class="field">
+    <label for="editorial">Editorial</label>
+    <input id="editorial" type="text" formControlName="editorial" placeholder="ej. Editorial Sudamericana" />
+    @if (f.editorial.invalid && f.editorial.touched) {
+      <span class="error">La editorial es obligatoria</span>
+    }
+  </div>
+
+  <button type="submit" class="slip__submit">Agregar a la pila</button>
+</form>

@@ -1,0 +1,18 @@
+<header class="hero">
+  <h1 class="hero__title">Pila de libros - Stack of Books</h1>
+  <p class="hero__subtitle">
+    Una pequeña biblioteca representada como una estructura de datos de
+    pila (LIFO), cada libro que agregues va arriba y el top de la
+    pila es lo que se extraería primero.
+  </p>
+</header>
+
+<main class="layout">
+  <section class="layout__form">
+    <app-book-form (bookSubmitted)="onBookSubmitted($event)"></app-book-form>
+  </section>
+
+  <section class="layout__list">
+    <app-book-list [books]="books" (removeTopRequested)="onRemoveTop()"></app-book-list>
+  </section>
+</main>

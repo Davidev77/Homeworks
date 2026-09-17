@@ -1,0 +1,37 @@
+<div class="drawer">
+  <div class="drawer__header">
+    <h2>Pila &mdash; {{ books.length }} libro{{ books.length === 1 ? '' : 's' }}</h2>
+  </div>
+
+  <div class="drawer__actions">
+    <button
+      type="button"
+      class="drawer__remove"
+      [disabled]="books.length === 0"
+      (click)="onRemoveTop()"
+    >
+      Eliminar libro de la pila
+    </button>
+  </div>
+
+  @if (books.length === 0) {
+    <p class="drawer__empty">La pila está vacía. Agrega un libro para verlo aparecer aquí.</p>
+  }
+
+  <ol class="drawer__cards">
+    @for (book of books; track book.isbn + $index; let i = $first) {
+      <li class="card" [class.card--top]="i">
+        <span class="card__index" [class.card__index--top]="i">{{ i ? 'TOP' : '' }}</span>
+        <h3 class="card__title">{{ book.name }}</h3>
+        <dl class="card__meta">
+          <dt>Autor</dt>
+          <dd>{{ book.author }}</dd>
+          <dt>Editorial</dt>
+          <dd>{{ book.editorial }}</dd>
+          <dt>ISBN</dt>
+          <dd class="card__isbn">{{ book.isbn }}</dd>
+        </dl>
+      </li>
+    }
+  </ol>
+</div>

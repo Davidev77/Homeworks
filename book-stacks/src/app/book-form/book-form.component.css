@@ -1,0 +1,82 @@
+.slip {
+  position: relative;
+  background: #fffdf7;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 2.25rem 1.75rem 1.75rem;
+  box-shadow: 0 1px 0 rgba(35, 36, 31, 0.06), 0 12px 24px -18px rgba(35, 36, 31, 0.4);
+}
+
+.slip__tab {
+  position: absolute;
+  top: -0.85rem;
+  left: 1.5rem;
+  background: var(--brass);
+  color: #fffdf7;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+}
+
+.slip__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.15rem;
+}
+
+.field label {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.3rem;
+}
+
+.field input {
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  padding: 0.3rem 0.1rem;
+  color: var(--ink);
+  transition: border-color 0.15s ease;
+}
+
+.field input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--cover-green);
+}
+
+.error {
+  color: var(--wine);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+.slip__submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  background: var(--cover-green);
+  color: #fffdf7;
+  border: none;
+  border-radius: 2px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background 0.15s ease;
+}
+
+.slip__submit:hover {
+  background: var(--cover-green-dark);
+}
