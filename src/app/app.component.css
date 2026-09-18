@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.hero {
+  text-align: left;
+  margin-bottom: 2.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero__eyebrow-icon {
+  font-size: 1.6rem;
+  display: inline-block;
+  margin-bottom: 0.6rem;
+}
+
+.hero__title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.85rem;
+}
+
+.hero__title-sub {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+}
+
+.hero__subtitle {
+  max-width: 56ch;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

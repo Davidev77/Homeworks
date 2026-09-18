@@ -1,0 +1,37 @@
+<form class="kiosk" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <div class="kiosk__tab">Nuevo turno</div>
+
+  <h2 class="kiosk__title">Tomar un turno en el cajero</h2>
+
+  <div class="field">
+    <label for="name">Nombre</label>
+    <input id="name" type="text" formControlName="name" placeholder="ej. Michael Jordan" />
+    @if (f.name.invalid && f.name.touched) {
+      <span class="error">El nombre es obligatorio</span>
+    }
+  </div>
+
+  <div class="field">
+    <label for="withdrawalAmount">Monto a retirar</label>
+    <div class="field__amount">
+      <span class="field__currency">$</span>
+      <input
+        id="withdrawalAmount"
+        type="number"
+        formControlName="withdrawalAmount"
+        placeholder="100000"
+        min="1000"
+        step="1000"
+      />
+    </div>
+    @if (f.withdrawalAmount.invalid && f.withdrawalAmount.touched) {
+      <span class="error">Ingresa un monto válido (mínimo $1.000)</span>
+    }
+  </div>
+
+  <p class="kiosk__note">
+    La hora de llegada se asigna automáticamente al sistema al tomar el turno
+  </p>
+
+  <button type="submit" class="kiosk__submit">Tomar turno (enqueue)</button>
+</form>

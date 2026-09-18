@@ -1,0 +1,19 @@
+<header class="hero">
+  <h1 class="hero__title">Fila del Cajero <span class="hero__title-sub">— ATM Queue</span></h1>
+  <p class="hero__subtitle">
+    Una fila de personas esperando el cajero automático, respaldada por
+    una verdadera estructura de datos de cola (FIFO). Cada persona toma
+    un turno con una hora de llegada asignada al azar por el sistema, y
+    la pantalla siempre se imprime ordenada por esa hora de llegada.
+  </p>
+</header>
+
+<main class="layout">
+  <section class="layout__form">
+    <app-person-form (personSubmitted)="onPersonSubmitted($event)"></app-person-form>
+  </section>
+
+  <section class="layout__list">
+    <app-person-list [people]="people" (serveNext)="onServeNext()"></app-person-list>
+  </section>
+</main>

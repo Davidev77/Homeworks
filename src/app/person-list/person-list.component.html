@@ -1,0 +1,39 @@
+<div class="board">
+  <div class="board__header">
+    <h2 class="board__title">Pantalla de turnos</h2>
+    <span class="board__hint">Ordenado por hora de llegada</span>
+  </div>
+
+  <button
+    type="button"
+    class="board__serve"
+    [disabled]="people.length === 0"
+    (click)="serveNext.emit()"
+  >
+    Atender al siguiente en el sistema (dequeue)
+  </button>
+
+  @if (people.length === 0) {
+    <p class="board__empty">No hay nadie en la fila en este momento.</p>
+  }
+
+  <ol class="board__rows">
+    @for (person of people; track person.name + person.arrivalDate.getTime(); let i = $index) {
+      <li class="row" [class.row--next]="i === 0">
+        <span class="row__ticket">{{ (i + 1).toString().padStart(3, '0') }}</span>
+        <div class="row__details">
+          <span class="row__name">{{ person.name }}</span>
+          <span class="row__meta">
+            Retiro: ${{ formatAmount(person.withdrawalAmount) }}
+          </span>
+        </div>
+        <span class="row__time">
+          {{ formatTime(person.arrivalDate) }}
+          @if (i === 0) {
+            <span class="row__badge">SIGUIENTE</span>
+          }
+        </span>
+      </li>
+    }
+  </ol>
+</div>
