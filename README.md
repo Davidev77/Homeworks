@@ -45,7 +45,7 @@ recorridos clásicos, una función de búsqueda y una visualización con D3
 
 ```bash
 npm install
-npm start        # equivalente a: ng serve
+npm start        
 ```
 
 Abre `http://localhost:4200`.
@@ -53,7 +53,7 @@ Abre `http://localhost:4200`.
 ## Pruebas unitarias
 
 ```bash
-npm test          # ng test (Karma/Jasmine)
+npm test          
 ```
 
 Incluye pruebas para inserción, los tres recorridos, `contains()` y la
@@ -65,15 +65,4 @@ conversión a datos jerárquicos para D3 (`src/app/binary-search-tree.spec.ts`).
 npm run build
 ```
 
-## Estructura relevante
 
-```
-src/app/
-├── binary-search-tree.ts        # Modelo BST: insert, contains, traversals
-├── binary-search-tree.spec.ts   # Pruebas unitarias
-├── app.component.ts/.html/.css  # UI principal (inputs, recorridos, búsqueda)
-└── tree-view/
-    ├── tree-view.component.ts   # Visualización con d3-hierarchy / d3.tree
-    ├── tree-view.component.html
-    └── tree-view.component.css
-```
