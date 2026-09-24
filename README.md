@@ -1,4 +1,4 @@
-# BST Tree App (Angular + D3)
+# Árbol Binario de Búsqueda (Angular + D3)
 
 Proyecto Angular que implementa un **Árbol Binario de Búsqueda (BST)**, sus
 recorridos clásicos, una función de búsqueda y una visualización con D3
