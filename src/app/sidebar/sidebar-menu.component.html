@@ -1,0 +1,33 @@
+<ul class="menu-level" [style.--depth]="depth">
+  @for (node of nodes; track node.title) {
+    <li>
+      @if (node.hasChildren) {
+        <!-- Nodo con submenú: encabezado desplegable -->
+        <button
+          type="button"
+          class="menu-item parent"
+          [style.paddingLeft.px]="16 + depth * 16"
+          (click)="toggle(node)"
+        >
+          <span>{{ node.title }}</span>
+          <i class="chevron" [class.open]="isExpanded(node)">▾</i>
+        </button>
+
+        @if (isExpanded(node)) {
+          <!-- Recursión: este mismo componente vuelve a renderizarse para los hijos del nodo actual -->
+          <app-sidebar-menu [nodes]="node.children" [depth]="depth + 1" />
+        }
+      } @else {
+        <!-- Nodo hoja: enlace directo a su ruta/componente -->
+        <a
+          class="menu-item leaf"
+          [style.paddingLeft.px]="16 + depth * 16"
+          [routerLink]="node.link"
+          routerLinkActive="active"
+        >
+          {{ node.title }}
+        </a>
+      }
+    </li>
+  }
+</ul>

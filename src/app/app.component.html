@@ -1,86 +1,9 @@
-<main class="page">
-  <header>
-    <h1>{{ title }}</h1>
-    <p class="subtitle">
-      Inserta números, revisa los recorridos por consola, busca valores y
-      visualiza la estructura con D3 (d3-hierarchy / d3.tree)
-    </p>
-  </header>
+<div class="layout">
+  <aside class="sidebar">
+    <app-sidebar-menu [nodes]="tree.root.children" [depth]="0" />
+  </aside>
 
-  <section class="panel">
-    <h2>Insertar valores</h2>
-
-    <div class="row">
-      <label for="bulk">Lista separada por comas</label>
-      <div class="input-group">
-        <input
-          id="bulk"
-          type="text"
-          [(ngModel)]="bulkInput"
-          placeholder="Ej: 50, 30, 70, 20"
-        />
-        <button (click)="insertBulk()">Insertar lista</button>
-      </div>
-    </div>
-
-    <div class="row">
-      <label for="single">Valor individual (para insertarlo en la lista)</label>
-      <div class="input-group">
-        <input
-          id="single"
-          type="number"
-          [(ngModel)]="singleValue"
-          placeholder="Ej: 45"
-          (keyup.enter)="insertSingle()"
-        />
-        <button (click)="insertSingle()">Insertar</button>
-        <button class="secondary" (click)="resetTree()">
-          Reiniciar árbol
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>Buscar un valor dentro del árbol</h2>
-    <div class="row">
-      <div class="input-group">
-        <input
-          type="number"
-          [(ngModel)]="searchValue"
-          placeholder="Ej: 40"
-          (keyup.enter)="runSearch()"
-        />
-        <button (click)="runSearch()">Buscar</button>
-      </div>
-      @if (searchResult !== null) {
-        <p class="result" [class.found]="searchResult" [class.not-found]="!searchResult">
-          {{ searchResult ? 'El valor SÍ está en el árbol.' : 'El valor NO está en el árbol.' }}
-        </p>
-      }
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>Recorridos (también impresos en la consola del navegador)</h2>
-    <div class="traversals">
-      <div class="traversal-card">
-        <h3>InOrder</h3>
-        <code>{{ inOrderResult.join(', ') || '—' }}</code>
-      </div>
-      <div class="traversal-card">
-        <h3>PreOrder</h3>
-        <code>{{ preOrderResult.join(', ') || '—' }}</code>
-      </div>
-      <div class="traversal-card">
-        <h3>PostOrder</h3>
-        <code>{{ postOrderResult.join(', ') || '—' }}</code>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>Visualización con D3</h2>
-    <app-tree-view [data]="hierarchyData"></app-tree-view>
-  </section>
-</main>
+  <main class="content">
+    <router-outlet />
+  </main>
+</div>

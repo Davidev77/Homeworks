@@ -1,79 +1,63 @@
-# BST Tree App (Angular + D3)
+# N-ary Tree Sidebar Menu
 
-Proyecto Angular que implementa un **Árbol Binario de Búsqueda (BST)**, sus
-recorridos clásicos, una función de búsqueda y una visualización con D3
-(`d3-hierarchy` / `d3.tree`).
+Sidebar de navegación construido a partir de un **árbol N-ario** (cada nodo
+puede tener cualquier cantidad de hijos), replicando el patrón de
+menús/submenús de la maqueta (Profile, Messages, Settings con submenú,
+Help con submenú, Logout).
 
 ## Cumplimiento de los requisitos
 
-1. **Insertar una serie de números en un nuevo árbol e imprimirlo en
-   inorder – postorder – preorder por consola.**
-   - Ver `src/app/binary-search-tree.ts` → clase `BinarySearchTree`.
-   - Métodos `insert()`, `inOrder()`, `preOrder()`, `postOrder()`.
-   - `printTraversalsToConsole()` imprime los tres recorridos con
-     `console.log` cada vez que se inserta un valor (ver `AppComponent.refresh()`).
-   - Abre la consola del navegador (F12) para ver la salida cada vez que
-     insertas valores.
+1. **Nuevo proyecto Angular** — creado con `@angular/cli` (standalone
+   components, routing habilitado).
 
-2. **Función para verificar si un valor está en el árbol.**
-   - `BinarySearchTree.contains(value: number): boolean` (búsqueda O(log n)
-     en promedio, recorriendo izquierda/derecha según corresponda).
-   - Expuesta en la UI en la sección "Buscar un valor (contains)".
+2. **Árbol N-ario con menús y submenús, cada ítem con título, link y
+   componente**
+   - `src/app/models/menu-node.ts` → clase `MenuNode` (título, `link`
+     opcional, `component` opcional, `children: MenuNode[]`) y clase
+     `MenuTree` (raíz virtual + utilidades: `addTopLevel`, `getAllLeaves`,
+     `printToConsole`).
+   - `src/app/data/menu-data.ts` → construye el árbol de ejemplo:
+     ```
+     Profile
+     Messages
+     Settings
+       Account
+       Profile
+       Security & Privacy
+       Password
+       Notification
+     Help
+       FAQ's
+       Submit a Ticket
+       Network Status
+     Logout
+     ```
+   - Cada ítem hoja (sin submenú) tiene `link` + `component`; los ítems
+     con hijos (Settings, Help) actúan como secciones desplegables.
+   - `src/app/app.routes.ts` genera automáticamente una ruta por cada hoja
+     del árbol (`tree.getAllLeaves()`), asociándola a un componente.
 
-3. **D3 para visualizar el árbol, respetando la estructura de la librería.**
-   - `npm install d3` y `npm install -D @types/d3` ya están en
-     `package.json`.
-   - `src/app/tree-view/tree-view.component.ts` usa exactamente el patrón
-     de [`d3-hierarchy` / `d3.tree`](https://d3js.org/d3-hierarchy/tree):
-     1. `d3.hierarchy(data)` para construir la jerarquía a partir de
-        `{ value, children: [...] }`.
-     2. `d3.tree().size([width, height])` para calcular el layout
-        (Reingold–Tilford).
-     3. `d3.linkVertical()` para dibujar las conexiones padre-hijo.
-     4. Nodos y etiquetas dibujados como `<circle>` + `<text>` dentro de
-        un `<svg>`.
-   - El árbol del modelo (`BinarySearchTree`) se convierte a la forma que
-     espera D3 mediante `toHierarchyData()`.
-
-4. **Verificación visual con visualgo.net.**
-   - Puedes comparar la estructura resultante insertando la misma
-     secuencia de números en https://visualgo.net/en/bst y comparando el
-     árbol dibujado allí contra el de esta app (mismos valores → misma
-     forma, ya que ambos son BST clásicos sin balanceo).
+3. **Sidebar en pantalla imprimiendo el árbol**
+   - `src/app/sidebar/sidebar-menu.component.ts` es un componente
+     **recursivo**: si un nodo tiene hijos, se dibuja como encabezado
+     desplegable y el mismo componente vuelve a invocarse para renderizar
+     sus hijos (`<app-sidebar-menu [nodes]="node.children" ... />`); si no
+     tiene hijos, se dibuja como enlace (`routerLink`) al componente de esa
+     ruta.
+   - El estilo oscuro con la sección activa resaltada en azul reproduce la
+     maqueta.
+   - Además, `AppComponent` imprime el árbol completo en la consola del
+     navegador (`tree.printToConsole()`) al iniciar, para verificar la
+     estructura N-aria de forma textual/jerárquica.
 
 ## Cómo correrlo
 
 ```bash
 npm install
-npm start        # equivalente a: ng serve
+npm start        # ng serve
 ```
 
-Abre `http://localhost:4200`.
+Abre `http://localhost:4200` y abre la consola (F12) para ver el árbol
+impreso.
 
-## Pruebas unitarias
 
-```bash
-npm test          # ng test (Karma/Jasmine)
-```
-
-Incluye pruebas para inserción, los tres recorridos, `contains()` y la
-conversión a datos jerárquicos para D3 (`src/app/binary-search-tree.spec.ts`).
-
-## Build de producción
-
-```bash
-npm run build
-```
-
-## Estructura relevante
-
-```
-src/app/
-├── binary-search-tree.ts        # Modelo BST: insert, contains, traversals
-├── binary-search-tree.spec.ts   # Pruebas unitarias
-├── app.component.ts/.html/.css  # UI principal (inputs, recorridos, búsqueda)
-└── tree-view/
-    ├── tree-view.component.ts   # Visualización con d3-hierarchy / d3.tree
-    ├── tree-view.component.html
-    └── tree-view.component.css
-```

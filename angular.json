@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "bst-tree-app": {
+    "sidebar-menu-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -16,7 +16,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/bst-tree-app",
+            "outputPath": "dist/sidebar-menu-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "bst-tree-app:build:production"
+              "buildTarget": "sidebar-menu-app:build:production"
             },
             "development": {
-              "buildTarget": "bst-tree-app:build:development"
+              "buildTarget": "sidebar-menu-app:build:development"
             }
           },
           "defaultConfiguration": "development"

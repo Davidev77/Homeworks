@@ -1,0 +1,50 @@
+.menu-level {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 16px;
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.menu-item:hover {
+  background: #262f3d;
+}
+
+.menu-item.parent {
+  background: #1a202c;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.menu-item.leaf.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.chevron {
+  font-style: normal;
+  font-size: 0.75rem;
+  transition: transform 0.15s ease;
+  color: #94a3b8;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
