@@ -1,0 +1,15 @@
+.tree-container {
+  width: 100%;
+  min-height: 200px;
+  overflow-x: auto;
+}
+
+.empty-message {
+  color: #64748b;
+  font-style: italic;
+}
+
+::ng-deep .tree-container svg {
+  display: block;
+  margin: 0 auto;
+}
