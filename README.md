@@ -1,59 +1,39 @@
-# DemoLoginApp
+# Firebase Taskboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.24.
+Aplicación web para organizar tareas personales con autenticación y sincronización en Firebase.
 
-## Development server
+## Tecnologías
 
-To start a local development server, run:
+- Angular 18 y TypeScript.
+- Firebase para Backend.
+- Bootstrap 5 y Sass para la interfaz.
 
-```bash
-ng serve
-```
+## Configuración de Firebase
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La configuración de Firebase se encuentra en `src/firebase/config.ts`.
 
-## Code scaffolding
+## Ejecutar la aplicación
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Requiere Node.js y npm.
 
 ```bash
-ng generate --help
+npm install
+npm start
 ```
 
-## Building
-
-To build the project run:
+La aplicación estará disponible en `http://localhost:4200/`. Para generar una compilación de producción:
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Organización del código
 
-## Running unit tests
+- `src/app/pages/`: páginas de inicio de sesión, registro y tareas.
+- `src/app/services/`: acceso a Firebase Authentication y Cloud Firestore.
+- `src/app/hooks/`: estado y operaciones de autenticación y tareas.
+- `src/app/guards/`: protección de rutas para usuarios autenticados y visitantes.
+- `src/firebase/config.ts`: inicialización y configuración de Firebase.
+- `src/styles.scss` y `src/styles/`: estilos globales, Bootstrap y variables Sass.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

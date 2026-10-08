@@ -1,0 +1,60 @@
+@use "styles/variables" as *;
+
+$primary: $accent;
+$body-bg: $paper;
+$body-color: $ink;
+$border-radius: $radius;
+$font-family-sans-serif: "Segoe UI", system-ui, -apple-system, sans-serif;
+$headings-font-weight: 700;
+
+@import "bootstrap/scss/bootstrap";
+
+.page-center { min-height: 100vh; display: grid; place-items: center; padding: 1rem; }
+
+.auth-card {
+  width: 100%; max-width: 400px; background: #fff; padding: 2rem;
+  border-radius: $radius * 1.4; box-shadow: 0 8px 30px rgba($ink, 0.1);
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+}
+
+.app-nav {
+  background: $ink; padding: 0.8rem 0;
+  .brand { color: #fff; font-weight: 700; }
+  .text-muted { color: rgba(#fff, 0.7) !important; }
+  .btn-outline-primary {
+    color: #fff; border-color: rgba(#fff, 0.5);
+    &:hover { background: #fff; color: $ink; }
+  }
+}
+
+.tasks-page { max-width: 720px; padding-top: 2rem; padding-bottom: 3rem; }
+
+.panel { background: #fff; padding: 1.25rem; border-radius: $radius; box-shadow: 0 2px 10px rgba($ink, 0.07); }
+
+.task-form { display: grid; gap: 0.6rem; }
+
+.task-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+
+.task-item {
+  display: flex; align-items: center; gap: 0.9rem; background: #fff;
+  padding: 0.9rem 1rem; border-radius: $radius; border-left: 4px solid $accent;
+  box-shadow: 0 1px 6px rgba($ink, 0.06);
+
+  &.editing { display: block; }
+  .task-body { flex: 1; min-width: 0; }
+  .task-title { font-weight: 600; }
+  .task-desc { font-size: 0.9rem; color: $done; }
+  .task-actions { display: flex; gap: 0.4rem; }
+
+  &.is-done {
+    border-left-color: $done;
+    .task-title { text-decoration: line-through; color: $done; }
+  }
+
+  @media (max-width: 520px) {
+    flex-wrap: wrap;
+    .task-actions { width: 100%; justify-content: flex-end; }
+  }
+}
+
+.empty { color: $done; padding: 2rem 0; text-align: center; }
