@@ -1,0 +1,58 @@
+:host { display: block; }
+* { box-sizing: border-box; }
+
+.pagina {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  background: #f1f3f2;
+  font-family: Arial, sans-serif;
+}
+
+.tarjeta {
+  width: min(100%, 420px);
+  padding: 32px;
+  border: 1px solid #d5ddda;
+  border-top: 5px solid #315f59;
+  border-radius: 4px;
+  background: white;
+  color: #263b38;
+}
+
+.etiqueta { margin: 0 0 8px; color: #39766c; font-size: 12px; font-weight: 700; letter-spacing: 2px; }
+h1 { margin: 0 0 8px; font-size: 28px; }
+.ayuda { margin: 0 0 24px; color: #6d7b78; font-size: 14px; line-height: 1.6; }
+
+form { display: grid; gap: 12px; }
+label { font-size: 14px; font-weight: 600; }
+
+input {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #cbd5d1;
+  border-radius: 8px;
+  font: inherit;
+}
+
+input:focus { outline: 2px solid #93b9ac; outline-offset: 1px; }
+
+button {
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: #39766c;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+
+  &:disabled { opacity: .55; cursor: not-allowed; }
+}
+
+.error { margin: 0; padding: 12px; border-radius: 4px; background: #f9e7e3; color: #963e34; }
+
+.cambiar-modo { margin: 18px 0; color: #596b63; font-size: 13px; text-align: center; }
+.cambiar-modo button { padding: 0; color: #315f59; background: transparent; font-weight: 700; text-decoration: underline; }
+.cambiar-modo button:disabled { opacity: .55; cursor: not-allowed; }
+
+.prueba { padding: 12px; border-left: 3px solid #e5bb62; background: #f7f4e9; color: #596b63; font-size: 13px; line-height: 1.6; }

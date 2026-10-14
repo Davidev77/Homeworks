@@ -1,0 +1,81 @@
+<main class="pagina">
+  <section class="tarjeta">
+    <p class="etiqueta">GESTOR DE ARCHIVOS</p>
+    <h1>{{ modoRegistro() ? 'Crear cuenta' : 'Iniciar sesión' }}</h1>
+    <p class="ayuda">
+      {{ modoRegistro()
+        ? 'Regístrate para organizar tus carpetas y archivos.'
+        : 'Solo los usuarios registrados pueden crear carpetas y archivos.' }}
+    </p>
+
+
+    <form #form="ngForm" (ngSubmit)="modoRegistro() ? crearCuenta() : ingresar()">
+      <label for="correo">Correo</label>
+      <input
+        id="correo"
+        name="correo"
+        type="email"
+        [(ngModel)]="correo"
+        autocomplete="username"
+        [disabled]="enviando()"
+        required
+        email
+      />
+
+
+      <label for="clave">Contraseña</label>
+      <input
+        id="clave"
+        name="clave"
+        type="password"
+        [(ngModel)]="clave"
+        [attr.autocomplete]="modoRegistro() ? 'new-password' : 'current-password'"
+        [disabled]="enviando()"
+        [minlength]="modoRegistro() ? 6 : null"
+        required
+      />
+
+
+      @if (modoRegistro()) {
+        <label for="confirmarClave">Confirmar contraseña</label>
+        <input
+          id="confirmarClave"
+          name="confirmarClave"
+          type="password"
+          [(ngModel)]="claveConfirmacion"
+          autocomplete="new-password"
+          [disabled]="enviando()"
+          required
+        />
+      }
+
+
+      @if (error()) {
+        <p class="error" role="alert">{{ error() }}</p>
+      }
+
+
+      <button type="submit" [disabled]="form.invalid || enviando()">
+        {{ enviando()
+          ? (modoRegistro() ? 'Creando cuenta...' : 'Ingresando...')
+          : (modoRegistro() ? 'Crear cuenta' : 'Ingresar') }}
+      </button>
+    </form>
+
+
+    <p class="cambiar-modo">
+      {{ modoRegistro() ? '¿Ya tienes cuenta?' : '¿No tienes cuenta?' }}
+      <button type="button" (click)="cambiarModo()" [disabled]="enviando()">
+        {{ modoRegistro() ? 'Inicia sesión' : 'Regístrate' }}
+      </button>
+    </p>
+
+
+    @if (!modoRegistro()) {
+    <p class="prueba">
+      Usuario de prueba:<br />
+      <strong>usuario: david@gmail.com</strong> / <strong>clave: davidhome</strong>
+    </p>
+    }
+  </section>
+</main>

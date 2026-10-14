@@ -1,0 +1,98 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #eef3ee;
+  color: #20372c;
+  font-family: Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+.contenedor { max-width: 1200px; margin: auto; padding: 32px 20px; }
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.etiqueta { color: #2563eb; font-size: 12px; font-weight: 700; letter-spacing: 2px; }
+h1 { margin: 8px 0; font-size: clamp(24px, 4vw, 34px); }
+h2 { margin-top: 0; font-size: 20px; }
+.sesion { display: grid; gap: 12px; }
+
+.distribucion {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.panel {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: white;
+}
+
+.login { max-width: 420px; margin: auto; }
+.ayuda { color: #64748b; font-size: 14px; line-height: 1.6; }
+.arbol { overflow-x: auto; }
+
+button, input, select { font: inherit; }
+
+button {
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+
+  &:disabled { opacity: .55; cursor: not-allowed; }
+}
+
+.secundario { background: #e2e8f0; color: #1e293b; }
+
+.nodo {
+  display: block;
+  width: 100%;
+  min-width: max-content;
+  margin-bottom: 6px;
+  padding-top: 12px;
+  padding-right: 16px;
+  padding-bottom: 12px;
+  background: #f8fafc;
+  color: #1e293b;
+  text-align: left;
+
+  &:hover { background: #e2e8f0; }
+  &.seleccionado { background: #dbeafe; outline: 1px solid #93c5fd; outline-offset: -1px; }
+  small { display: block; margin-top: 5px; color: #64748b; }
+}
+
+.nombre-nodo { display: flex; align-items: center; gap: 8px; }
+
+form { display: grid; gap: 12px; }
+label { font-size: 14px; font-weight: 600; }
+
+input, select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+}
+
+.aviso { padding: 14px; border-radius: 8px; background: #fef3c7; line-height: 1.5; }
+.error { background: #fee2e2; color: #991b1b; }
+.exito { background: #dcfce7; color: #166534; }
+.destino { font-weight: 700; }
+
+@media (max-width: 800px) {
+  .encabezado { flex-direction: column; align-items: flex-start; }
+  .distribucion { grid-template-columns: 1fr; }
+}

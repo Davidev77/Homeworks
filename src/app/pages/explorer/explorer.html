@@ -1,0 +1,134 @@
+<main class="contenedor">
+  <header class="encabezado">
+    <div>
+      <p class="etiqueta">MIS ARCHIVOS</p>
+      <h1>Mis carpetas y archivos</h1>
+    </div>
+
+    <div class="sesion">
+      <span>{{ auth.correo() }}</span>
+      <button
+        type="button"
+        class="secundario"
+        (click)="logout()"
+        [disabled]="guardando()"
+      >
+        Cerrar sesión
+      </button>
+    </div>
+  </header>
+
+  @if (error()) {
+    <p class="aviso error" role="alert">{{ error() }}</p>
+  }
+
+  @if (mensaje()) {
+    <p class="aviso exito" role="status">{{ mensaje() }}</p>
+  }
+
+  <div class="distribucion">
+    <section class="panel">
+      <h2>Estructura</h2>
+      <p class="ayuda">
+        Selecciona una carpeta para crear elementos dentro de ella.
+      </p>
+
+      @if (cargando()) {
+        <p>Cargando árbol...</p>
+      } @else {
+        <div class="arbol">
+          @for (fila of filas(); track fila.nodo.id) {
+            <button
+              type="button"
+              class="nodo"
+              [class.seleccionado]="seleccionadoId() === fila.nodo.id"
+              [style.padding-left.px]="16 + fila.nivel * 24"
+              [disabled]="guardando()"
+              (click)="seleccionar(fila.nodo.id)"
+            >
+              <span class="nombre-nodo">
+                <span aria-hidden="true">
+                  {{ fila.nodo.tipo === 'carpeta' ? '📁' : '📄' }}
+                </span>
+                {{ fila.nodo.nombre }}
+              </span>
+
+              <small>
+                {{ fila.nodo.id === 'raiz'
+                  ? 'Contenedor raíz'
+                  : fila.nodo.correoCreador }}
+              </small>
+            </button>
+          }
+        </div>
+      }
+    </section>
+
+    <aside class="panel">
+      <h2>Crear elemento</h2>
+
+      <p>
+        Seleccionado:
+        <span class="destino">{{ seleccionado()?.nombre }}</span>
+      </p>
+
+      @if (seleccionado()?.tipo === 'archivo') {
+        <p class="aviso">
+          Un archivo no puede contener hijos. Selecciona una carpeta.
+        </p>
+      } @else {
+        <form #crearForm="ngForm" (ngSubmit)="crear()">
+          <label for="nombre">Nombre</label>
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            maxlength="100"
+            [(ngModel)]="nombre"
+            [disabled]="guardando()"
+            required
+          />
+
+          <label for="tipo">Tipo</label>
+          <select
+            id="tipo"
+            name="tipo"
+            [(ngModel)]="tipo"
+            [disabled]="guardando()"
+          >
+            <option value="carpeta">Carpeta</option>
+            <option value="archivo">Archivo</option>
+          </select>
+
+          <p class="ayuda">Creador: {{ auth.correo() }}</p>
+
+          <button
+            type="submit"
+            [disabled]="crearForm.invalid || !nombre.trim() || guardando()"
+          >
+            {{ guardando() ? 'Guardando...' : 'Crear' }}
+          </button>
+        </form>
+      }
+
+      @if (seleccionado() && seleccionado()?.id !== 'raiz') {
+        <div class="seccion-eliminar">
+          <h2>Eliminar elemento</h2>
+          @if (seleccionado()?.correoCreador !== auth.correo()) {
+            <p class="ayuda">Solo puedes eliminar elementos creados por tu cuenta.</p>
+          } @else {
+            <p class="ayuda">Al eliminar una carpeta también se borrará todo su contenido.</p>
+          }
+          <button
+            type="button"
+            class="eliminar"
+            (click)="eliminar()"
+            [disabled]="guardando() || seleccionado()?.correoCreador !== auth.correo()"
+          >
+            {{ guardando() ? 'Eliminando...' : 'Eliminar seleccionado' }}
+          </button>
+        </div>
+      }
+    </aside>
+  </div>
+</main>
