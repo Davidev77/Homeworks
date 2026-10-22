@@ -1,0 +1,57 @@
+:root {
+  --ink: #1d2a2a;
+  --muted: #5f6f6f;
+  --paper: #f7f9f8;
+  --card: #ffffff;
+  --line: #d7e0dd;
+  --accent: #0b7a64;
+  --danger: #b3261e;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--ink);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); line-height: 1.5; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.auth { max-width: 380px; margin: 12vh auto; padding: 0 1rem; }
+.auth form, .add { display: grid; gap: .9rem; }
+label { display: grid; gap: .25rem; font-size: .9rem; }
+input[type=email], input[type=password], input:not([type]), input.edit {
+  padding: .6rem .7rem; border: 1px solid var(--line); border-radius: 6px; font: inherit; background: var(--card);
+}
+button.primary { background: var(--accent); color: #fff; border: 0; padding: .65rem 1rem; border-radius: 6px; }
+button.primary:disabled { opacity: .5; cursor: not-allowed; }
+button.link { background: none; border: 0; color: var(--accent); padding: .25rem .4rem; }
+button.link.danger { color: var(--danger); }
+.msg { margin: 0; padding: .5rem .7rem; border-radius: 6px; font-size: .9rem; }
+.msg.error { background: #fdecea; color: var(--danger); }
+.msg.info { background: #e6f4ef; color: var(--accent); }
+
+.bar { display: flex; align-items: center; gap: .8rem; padding: .8rem 1.2rem; border-bottom: 1px solid var(--line); background: var(--card); }
+.bar .who { flex: 1; display: grid; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; background: var(--accent); color: #fff;
+  display: grid; place-items: center; font-weight: 600; cursor: pointer; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.tasks { max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+.add { grid-template-columns: 1fr auto; margin-bottom: 1rem; }
+ul { list-style: none; margin: 0; padding: 0; }
+li { display: flex; align-items: center; gap: .6rem; padding: .7rem .2rem; border-bottom: 1px solid var(--line); }
+li .title, li .edit { flex: 1; }
+li.done .title { text-decoration: line-through; color: var(--muted); }
+.empty { color: var(--muted); }
+
+.avatar-wrap {
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+}
+.avatar-hint {
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+.avatar-wrap:hover .avatar-hint {
+  text-decoration: underline;
+}
