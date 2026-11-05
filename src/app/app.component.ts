@@ -1,97 +1,73 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { GraphService } from './graph.service';
-import { GraphViewComponent } from './graph-view.component';
+import { SearchService } from './core/search.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, GraphViewComponent],
+  imports: [FormsModule],
   template: `
-    <aside>
-      <h1>Amigos y ciudades</h1>
+    <main>
+      <h1>Buscador de zapatillas</h1>
+      <p class="sub">Trie (prefijos) + Heap (Top K)</p>
 
-      <section>
-        <h2>Añade una ciudad</h2>
-        <input [(ngModel)]="cityName" placeholder="Ciudad" (keyup.enter)="addCity()" />
-        <button (click)="addCity()" [disabled]="!cityName.trim()">Añade una ciudad</button>
+      <section class="card">
+        <input [(ngModel)]="query" placeholder="Busca por prefijo: air, adi, nike..." autofocus>
+        <label>Top K <input type="number" min="1" max="50" [(ngModel)]="k" class="k"></label>
       </section>
 
-      <section>
-        <h2>Añade una persona</h2>
-        <input [(ngModel)]="personName" placeholder="Nombre" />
-        <input [(ngModel)]="personAge" type="number" min="0" placeholder="Edad" />
-        <select [(ngModel)]="personCityId">
-          <option value="" disabled>Vive en</option>
-          @for (c of svc.cities(); track c.id) { <option [value]="c.id">{{ c.name }}</option> }
-        </select>
-        <button (click)="addPerson()"
-                [disabled]="!personName.trim() || personAge === null || !personCityId">
-          Añade una persona
-        </button>
-      </section>
-
-      <section>
-        <h2>Busca a los que viven en una ciudad</h2>
-        <select [ngModel]="selectedCityId()" (ngModelChange)="selectedCityId.set($event)">
-          <option [ngValue]="null">Escoge una ciudad</option>
-          @for (c of svc.cities(); track c.id) { <option [ngValue]="c.id">{{ c.name }}</option> }
-        </select>
-
-        @if (selectedCityId()) {
-          @if (residents().length) {
-            <ul>
-              @for (p of residents(); track p.id) { <li>{{ p.name }}, {{ p.age }}</li> }
-            </ul>
-          } @else {
-            <p class="muted">Nadie vive aquí aún</p>
-          }
+      <section class="card">
+        @for (p of results(); track p.name; let i = $index) {
+          <div class="row">
+            <span class="rank">{{ i + 1 }}</span>
+            <span class="name">{{ p.name }}</span>
+            <span class="bar"><i [style.width.%]="p.popularity"></i></span>
+            <b>{{ p.popularity }}</b>
+          </div>
+        } @empty {
+          <p class="empty">Sin resultados</p>
         }
       </section>
-    </aside>
 
-    <main>
-      <app-graph-view [nodes]="svc.nodes()" [links]="svc.links()" [highlightCityId]="selectedCityId()" />
+      <section class="card add">
+        <input [(ngModel)]="newName" placeholder="Nuevo producto">
+        <input type="number" min="0" max="100" [(ngModel)]="newPop" class="k">
+        <button (click)="add()">Agregar</button>
+      </section>
     </main>
   `,
-  styles: [`
-    :host { display: grid; grid-template-columns: 320px 1fr; grid-template-rows: 100vh; height: 100vh; font-family: system-ui, sans-serif; color: #1c2430; }
-    aside { padding: 20px; overflow-y: auto; border-right: 1px solid #d9dee4; background: #f6f8fa; }
-    main { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
-    h1 { font-size: 20px; margin: 0 0 16px; }
-    h2 { font-size: 14px; margin: 0 0 8px; }
-    section { margin-bottom: 22px; display: flex; flex-direction: column; gap: 8px; }
-    input, select, button { padding: 8px; font: inherit; border: 1px solid #c3cad2; border-radius: 6px; }
-    button { background: #1f6f78; color: #fff; border: 0; cursor: pointer; }
-    button:disabled { opacity: .45; cursor: default; }
-    ul { margin: 0; padding-left: 18px; }
-    .muted { color: #6b7684; margin: 0; }
-    @media (max-width: 700px) { :host { grid-template-columns: 1fr; grid-template-rows: auto 70vh; height: auto; } }
-  `],
+  styles: `
+    main { max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { margin: 0; } .sub { color: #666; margin-top: .25rem; }
+    .card { background: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,.08); display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+    .card:nth-of-type(2) { flex-direction: column; align-items: stretch; }
+    input { padding: .6rem .8rem; border: 1px solid #ccd; border-radius: 8px; font-size: 1rem; flex: 1; }
+    input.k { flex: 0 0 80px; }
+    button { padding: .6rem 1rem; border: 0; border-radius: 8px; background: #3b5bdb; color: #fff; cursor: pointer; }
+    .row { display: flex; align-items: center; gap: .75rem; }
+    .rank { width: 1.5rem; color: #888; } .name { flex: 0 0 160px; text-transform: capitalize; }
+    .bar { flex: 1; height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden; }
+    .bar i { display: block; height: 100%; background: #3b5bdb; }
+    .empty { color: #888; margin: 0; }
+  `,
 })
 export class AppComponent {
-  svc = inject(GraphService);
+  private search = inject(SearchService);
 
-  cityName = '';
-  personName = '';
-  personAge: number | null = null;
-  personCityId = '';
+  query = signal('air');
+  k = signal(2);
+  newName = signal('');
+  newPop = signal(50);
 
-  selectedCityId = signal<string | null>(null);
-  residents = computed(() => {
-    const id = this.selectedCityId();
-    return id ? this.svc.peopleIn(id) : [];
+  results = computed(() => {
+    this.search.version(); // dependencia para refrescar tras insertar
+    return this.search.searchTopK(this.query(), this.k());
   });
 
-  addCity() {
-    if (this.svc.addCity(this.cityName)) this.cityName = '';
-  }
-
-  addPerson() {
-    if (this.personAge === null) return;
-    if (this.svc.addPerson(this.personName, this.personAge, this.personCityId)) {
-      this.personName = '';
-      this.personAge = null;
-    }
+  add(): void {
+    if (!this.newName().trim()) return;
+    this.search.insert(this.newName(), this.newPop());
+    this.newName.set('');
   }
 }
