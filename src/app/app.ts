@@ -5,7 +5,7 @@ import { Gif, GiphyService } from './giphy.service';
   selector: 'app-root',
   template: `
     <main>
-      <h1>Buscador de GIFs</h1>
+      <h1>Buscador de GIFs (coloca tu API key en environment.ts y environment.development.ts)</h1>
 
       <input
         type="text"
