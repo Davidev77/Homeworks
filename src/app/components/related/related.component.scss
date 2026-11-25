@@ -1,0 +1,6 @@
+@use '../../../styles/mixins' as m;
+@use '../../../styles/variables' as v;
+:host { display: block; @include m.card; }
+li { @include m.song-row; }
+.now, .empty { color: v.$muted; font-size: .9rem; }
+.now strong { color: v.$primary; }

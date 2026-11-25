@@ -1,0 +1,13 @@
+@use '../../../styles/mixins' as m;
+@use '../../../styles/variables' as v;
+:host { display: block; @include m.card; }
+li { @include m.song-row; }
+.info { flex: 1; display: grid; gap: .2rem; }
+.pos {
+  @include m.badge(v.$muted);
+  @each $n, $color in v.$podium { &.p#{$n} { background: $color; } }
+}
+.bar { height: 6px; background: v.$surface-2; border-radius: 3px; overflow: hidden;
+  span { display: block; height: 100%; background: v.$primary; transition: width .4s; } }
+.plays { color: v.$muted; font-variant-numeric: tabular-nums; }
+button { @include m.button; padding: .3rem .7rem; }

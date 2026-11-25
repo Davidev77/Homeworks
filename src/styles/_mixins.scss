@@ -1,0 +1,50 @@
+@use 'variables' as v;
+
+@mixin card($pad: 1.25rem) {
+  background: v.$surface;
+  border-radius: v.$radius;
+  padding: $pad;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+@mixin button($bg: v.$primary) {
+  background: $bg;
+  color: #000;
+  border: 0;
+  border-radius: 999px;
+  padding: .45rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s, background .15s;
+  &:hover { background: v.$primary-dark; transform: scale(1.05); }
+}
+
+@mixin badge($color) {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem; height: 2rem;
+  border-radius: 50%;
+  font-weight: 800;
+  color: #000;
+  background: $color;
+}
+
+@mixin input {
+  width: 100%;
+  background: v.$surface-2;
+  color: v.$text;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: .7rem 1.1rem;
+  outline: none;
+  &:focus { border-color: v.$primary; }
+}
+
+@mixin respond-md { @media (max-width: v.$bp-md) { @content; } }
+
+@mixin song-row {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .6rem .8rem; border-radius: 10px; cursor: pointer;
+  &:hover { background: v.$surface-2; }
+  small { color: v.$muted; }
+}

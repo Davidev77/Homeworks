@@ -1,0 +1,8 @@
+@use '../../../styles/mixins' as m;
+@use '../../../styles/variables' as v;
+:host { display: block; @include m.card; }
+.search, .add input, .add select { @include m.input; }
+li { @include m.song-row; }
+.status { color: v.$muted; font-size: .85rem; &.ok { color: v.$primary; } }
+.add-title { margin-top: 1.5rem; }
+.add { display: grid; gap: .5rem; button { @include m.button; justify-self: start; } }
